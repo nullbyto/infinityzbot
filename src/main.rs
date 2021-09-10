@@ -95,7 +95,7 @@ async fn main() {
 }
 
 fn read_config(config: &str) -> String {
-    let data = fs::read_to_string("C:\\Users\\AminD\\Projects\\rust\\fluffy\\config.json").expect("Unable to read file");
+    let data = fs::read_to_string("./config.json").expect("Unable to read file");
     let res: serde_json::Value = serde_json::from_str(&data).expect("Unable to parse");
     format!("{}", res[config].as_str().unwrap())
 }
