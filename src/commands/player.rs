@@ -112,6 +112,7 @@ pub async fn play(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult
             }
         };
 
+        handler.stop();
         handler.play_source(source);
 
     }
