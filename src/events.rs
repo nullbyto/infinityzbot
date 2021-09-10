@@ -9,7 +9,7 @@ pub struct Handler;
 impl EventHandler for Handler {
     async fn ready(&self, ctx: Context, ready: Ready) {
         println!("Connected as {} in {} servers.", ready.user.name, ready.guilds.len());
-        ctx.set_activity(Activity::playing("Kuchi Kuchi Kuchi!")).await;
+        ctx.set_activity(Activity::playing("Kuchi Kuchi | $help")).await;
     }
 
     async fn reaction_add(&self, ctx: Context, reaction: Reaction) {
@@ -36,7 +36,7 @@ impl EventHandler for Handler {
                     msg.author = member.user;
                 }
             }
-            
+
             if reaction_emoji.unicode_eq("▶") {
                 let _ = play(&ctx, &msg, Args::new(&args_string,&[Delimiter::Single(' ')])).await;
             } else if reaction_emoji.unicode_eq("⏹") {
