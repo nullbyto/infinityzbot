@@ -17,6 +17,7 @@ use std::{
 
 #[command]
 #[only_in(guilds)]
+#[aliases("e1")]
 #[description = "bl3n the tagged user"]
 #[usage = "[@user] [times] [sound-name] | el3n [@user] [times]"]
 #[example = "@3min 5 zewzew | el3n @3min 5"]
@@ -105,6 +106,7 @@ async fn el3n(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
 
 #[command]
 #[only_in(guilds)]
+#[aliases("e2")]
 #[description = "bl3n the tagged user without sound"]
 #[usage = "[@user] [times]"]
 #[example = "@3min 5"]
