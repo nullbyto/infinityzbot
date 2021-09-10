@@ -157,6 +157,7 @@ async fn list(ctx: &Context, msg: &Message) -> CommandResult {
         list_vec.push(p);
     }
 
+    list_vec.sort();
     let mut list = String::new();
     for chunk in list_vec.chunks(25) {
         list = format!("{}{}{}",
