@@ -26,10 +26,17 @@ impl EventHandler for Handler {
         let args_string = args[1..].join(" ");
         let cmd_name = &args[0][1..];
         let mut msg = ctx.http.get_message(reaction.channel_id.0, reaction.message_id.0).await.unwrap();
-        if let Some(guild_id) = reaction.guild_id {
-            msg.guild_id = Some(guild_id);
-        }
+        
         if cmd_name.eq("p") || cmd_name.eq("play") {
+            if let Some(guild_id) = reaction.guild_id {
+                msg.guild_id = Some(guild_id);
+                if let Some(g) = ctx.cache.guild(guild_id).await {
+                    let guild = g;
+                    let member = guild.member(&ctx, user_id).await.unwrap();
+                    msg.author = member.user;
+                }
+            }
+            
             if reaction_emoji.unicode_eq("▶") {
                 let _ = play(&ctx, &msg, Args::new(&args_string,&[Delimiter::Single(' ')])).await;
             } else if reaction_emoji.unicode_eq("⏹") {
