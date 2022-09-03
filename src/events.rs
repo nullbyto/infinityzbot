@@ -17,7 +17,8 @@ impl EventHandler for Handler {
         let msg_r = reaction.message(&ctx).await.unwrap();
         if user_id == ctx.cache.current_user_id().await {return};
         let prefix = read_config("PREFIX");
-        if msg_r.content.chars().collect::<Vec<char>>()[0] != prefix.parse::<char>().unwrap() {return};
+        let content = &msg_r.content;
+        if !content.is_empty() && content.chars().collect::<Vec<char>>()[0] != prefix.parse::<char>().unwrap() {return};
         
         let reaction_emoji = reaction.emoji;
         if !reaction_emoji.unicode_eq("▶") && !reaction_emoji.unicode_eq("⏹") {return};
