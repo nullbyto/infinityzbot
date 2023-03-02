@@ -38,6 +38,7 @@ struct General;
 #[group]
 #[commands(join, leave, play, stop, list, upload)]
 #[summary = "Commands for playing sounds"]
+#[allowed_roles("♠CLUB HOUSE♠")]
 struct Player;
 
 #[group]
