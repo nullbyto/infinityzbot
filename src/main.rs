@@ -8,6 +8,7 @@ use commands::{
 };
 
 use serenity::{
+    prelude::*,
     async_trait,
     http::Http,
     client::{
@@ -57,7 +58,7 @@ async fn main() {
     let prefix = read_config("PREFIX");
     let token = read_config("TOKEN");
 
-    let http = Http::new_with_token(&token);
+    let http = Http::new(&token);
 
     let (owners, bot_id) = match http.get_current_application_info().await {
         Ok(info) => {
@@ -83,7 +84,9 @@ async fn main() {
         .group(&OWNER_GROUP)
         .help(&MY_HELP);
 
-    let mut client = Client::builder(&token)
+    let intents = GatewayIntents::non_privileged() | GatewayIntents::MESSAGE_CONTENT;
+
+    let mut client = Client::builder(&token, intents)
             .event_handler(events::Handler)
             .framework(framework)
             .register_songbird()

@@ -20,7 +20,7 @@ use std::{io, fs::File};
 #[aliases("j")]
 #[description = "Joins your voice channel."]
 async fn join(ctx: &Context, msg: &Message) -> CommandResult {
-    let guild = msg.guild(&ctx.cache).await.unwrap();
+    let guild = msg.guild(&ctx.cache).unwrap();
     
     let channel_id = guild
         .voice_states.get(&msg.author.id)
@@ -47,7 +47,7 @@ async fn join(ctx: &Context, msg: &Message) -> CommandResult {
 #[aliases("dc")]
 #[description = "Leaves the voice channel."]
 async fn leave(ctx: &Context, msg: &Message) -> CommandResult {
-    let guild = msg.guild(&ctx.cache).await.unwrap();
+    let guild = msg.guild(&ctx.cache).unwrap();
     let guild_id = guild.id;
 
     let manager = songbird::get(ctx).await
@@ -76,7 +76,7 @@ pub async fn play(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult
             return Ok(());
         }
     };
-    let guild = msg.guild(&ctx.cache).await.unwrap();
+    let guild = msg.guild(&ctx.cache).unwrap();
     let guild_id = guild.id;
 
     let path = Path::new(format!("./sounds/{}.mp3", sound_name).as_str()).to_owned();
@@ -126,7 +126,7 @@ pub async fn play(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult
 #[only_in(guilds)]
 #[aliases("s")]
 pub async fn stop(ctx: &Context, msg: &Message, _args: Args) -> CommandResult {
-    let guild = msg.guild(&ctx.cache).await.unwrap();
+    let guild = msg.guild(&ctx.cache).unwrap();
     let guild_id = guild.id;
 
     let manager = songbird::get(ctx).await
@@ -173,7 +173,7 @@ async fn list(ctx: &Context, msg: &Message) -> CommandResult {
             e.title("..:: Sound List ::..");
             e.description("All sounds are listed here: ");
             e.color(Colour::from(0xF83AAA));
-            e.timestamp(&chrono::Local::now());
+            e.timestamp(chrono::Local::now());
             e.description(list);
             e
         });
