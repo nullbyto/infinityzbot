@@ -57,7 +57,7 @@ impl EventHandler for Handler {
     ) {
         match new.channel_id {
             Some(id) => {
-                if id == 454119833681002506 || id == 312603720934227968 {
+                if id == 454119833681002506 {
                     let member = new.member.unwrap();
                     let guild_id = new.guild_id.unwrap();
                     // 1800 secs = 30 mins
