@@ -1,3 +1,5 @@
 /target
+/sounds
 
 config.json
+*.sh

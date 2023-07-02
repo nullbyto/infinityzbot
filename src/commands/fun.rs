@@ -17,6 +17,7 @@ use std::{
 
 #[command]
 #[only_in(guilds)]
+#[aliases("e1")]
 #[description = "bl3n the tagged user"]
 #[usage = "[@user] [times] [sound-name] | el3n [@user] [times]"]
 #[example = "@3min 5 zewzew | el3n @3min 5"]
@@ -36,7 +37,7 @@ async fn el3n(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         }
     };
 
-    let guild = msg.guild(&ctx.cache).await.unwrap();
+    let guild = msg.guild(&ctx.cache).unwrap();
     let user_id = UserId(user_id_nr);
     let member = guild.member(ctx, user_id).await.unwrap();
 
@@ -105,6 +106,7 @@ async fn el3n(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
 
 #[command]
 #[only_in(guilds)]
+#[aliases("e2")]
 #[description = "bl3n the tagged user without sound"]
 #[usage = "[@user] [times]"]
 #[example = "@3min 5"]
@@ -124,7 +126,7 @@ async fn el3no(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         }
     };
 
-    let guild = msg.guild(&ctx.cache).await.unwrap();
+    let guild = msg.guild(&ctx.cache).unwrap();
     let user_id = UserId(user_id_nr);
     let member = guild.member(ctx, user_id).await.unwrap();
 
